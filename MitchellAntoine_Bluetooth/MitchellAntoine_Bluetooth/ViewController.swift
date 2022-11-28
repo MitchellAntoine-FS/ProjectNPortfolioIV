@@ -11,7 +11,7 @@ import CoreBluetooth
 let soundboardServiceUUID = CBUUID(string: "06B280C1-419D-4D87-810E-00D88B506717")
 let soundboardCharacteristicUUID = CBUUID(string: "CD570797-087C-4008-B692-7835A1246377")
 
-class ViewController: UIViewController, CBPeripheralManagerDelegate, CBPeripheralDelegate {
+class ViewController: UIViewController, CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if peripheral.state == CBManagerState.poweredOn {
             svc = CBMutableService.init(type: soundboardServiceUUID, primary: true)
@@ -20,13 +20,15 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate, CBPeriphera
             let permissions : CBAttributePermissions = [.readable, .writeable]
             
             myChar = CBMutableCharacteristic.init(type: soundboardCharacteristicUUID, properties: props, value: nil, permissions: permissions)
+            svc?.characteristics = [myChar!]
+            pMgr?.add(svc!)
+            pMgr?.delegate = self
         }
     }
     
-    var pMgr : CBPeripheralManager?
-    var svc : CBMutableService?
-    var myVal : Data? = "initial".data(using: .ascii)
-    var myChar : CBMutableCharacteristic?
+    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+        <#code#>
+    }
     
     @IBOutlet weak var btnOne: UIButton!
     @IBOutlet weak var btnTwo: UIButton!
@@ -35,10 +37,21 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate, CBPeriphera
     @IBOutlet weak var btnFive: UIButton!
     @IBOutlet weak var btnSix: UIButton!
     
+    var pMgr : CBPeripheralManager?
+    var svc : CBMutableService?
+    var myChar : CBMutableCharacteristic?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         pMgr = CBPeripheralManager.init(delegate: self, queue: nil)
+        
+        self.btnOne.isHidden = true
+        self.btnTwo.isHidden = true
+        self.btnThree.isHidden = true
+        self.btnFour.isHidden = true
+        self.btnFive.isHidden = true
+        self.btnSix.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
