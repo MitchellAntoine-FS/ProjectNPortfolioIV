@@ -23,11 +23,33 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
             svc?.characteristics = [myChar!]
             pMgr?.add(svc!)
             pMgr?.delegate = self
+            let adData = [CBAdvertisementDataLocalNameKey:"Not SensorTag", CBAdvertisementDataServiceUUIDsKey:[soundboardServiceUUID]] as [String:Any]
+            pMgr?.startAdvertising(adData)
+        }
+    }
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
+        if let req = requests.first {
+            myVal = req.value
+            peripheral.respond(to: req, withResult: .success)
         }
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
-        <#code#>
+        peripheral.updateValue(self.myVal!, for: self.myChar!, onSubscribedCentrals: nil)
+    }
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
+        request.value = myVal
+        peripheral.respond(to: request, withResult: .success)
+    }
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
+        print("added service")
+    }
+    
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        print("advertising")
     }
     
     @IBOutlet weak var btnOne: UIButton!
@@ -40,18 +62,19 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
     var pMgr : CBPeripheralManager?
     var svc : CBMutableService?
     var myChar : CBMutableCharacteristic?
+    var myVal : Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         pMgr = CBPeripheralManager.init(delegate: self, queue: nil)
         
-        self.btnOne.isHidden = true
-        self.btnTwo.isHidden = true
-        self.btnThree.isHidden = true
-        self.btnFour.isHidden = true
-        self.btnFive.isHidden = true
-        self.btnSix.isHidden = true
+        self.btnOne.isEnabled = false
+        self.btnTwo.isEnabled = false
+        self.btnThree.isEnabled = false
+        self.btnFour.isEnabled = false
+        self.btnFive.isEnabled = false
+        self.btnSix.isEnabled = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,21 +83,27 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
     }
     
     @IBAction func buttonOne(_ sender: UIButton) {
+        self.myVal = "1".data(using: .utf16)
     }
     
     @IBAction func buttonTwo(_ sender: UIButton) {
+        self.myVal = "2".data(using: .utf16)
     }
     
     @IBAction func buttonThree(_ sender: UIButton) {
+        self.myVal = "3".data(using: .utf16)
     }
     
     @IBAction func buttonFour(_ sender: UIButton) {
+        self.myVal = "4".data(using: .utf16)
     }
     
     @IBAction func buttonFive(_ sender: UIButton) {
+        self.myVal = "5".data(using: .utf16)
     }
     
     @IBAction func buttonSix(_ sender: UIButton) {
+        self.myVal = "6".data(using: .utf16)
     }
     
 }
