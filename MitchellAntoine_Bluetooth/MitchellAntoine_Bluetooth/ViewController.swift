@@ -28,6 +28,8 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
         }
     }
     
+    
+    
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
         if let req = requests.first {
             myVal = req.value
@@ -36,7 +38,19 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+        
+        self.btnOne.isEnabled = true
+        self.btnTwo.isEnabled = true
+        self.btnThree.isEnabled = true
+        self.btnFour.isEnabled = true
+        self.btnFive.isEnabled = true
+        self.btnSix.isEnabled = true
+        
+        if (btnOne.isSelected || btnTwo.isSelected || btnThree.isSelected
+            || btnFour.isSelected || btnFive.isSelected || btnSix.isSelected) {
+        
         peripheral.updateValue(self.myVal!, for: self.myChar!, onSubscribedCentrals: nil)
+            }
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
@@ -83,23 +97,23 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
     }
     
     @IBAction func buttonOne(_ sender: UIButton) {
-        self.myVal = "1".data(using: .utf16)
+        self.myVal = "1".data(using: .utf8)
     }
     
     @IBAction func buttonTwo(_ sender: UIButton) {
-        self.myVal = "2".data(using: .utf16)
+        self.myVal = "2".data(using: .utf8)
     }
     
     @IBAction func buttonThree(_ sender: UIButton) {
-        self.myVal = "3".data(using: .utf16)
+        self.myVal = "3".data(using: .utf8)
     }
     
     @IBAction func buttonFour(_ sender: UIButton) {
-        self.myVal = "4".data(using: .utf16)
+        self.myVal = "4".data(using: .utf8)
     }
     
     @IBAction func buttonFive(_ sender: UIButton) {
-        self.myVal = "5".data(using: .utf16)
+        self.myVal = "5".data(using: .utf8)
     }
     
     @IBAction func buttonSix(_ sender: UIButton) {
