@@ -16,24 +16,16 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
         if peripheral.state == CBManagerState.poweredOn {
             svc = CBMutableService.init(type: soundboardServiceUUID, primary: true)
             
-            let props : CBCharacteristicProperties = [.read, .notify, .write]
-            let permissions : CBAttributePermissions = [.readable, .writeable]
+            let props : CBCharacteristicProperties = [.read, .notify]
+            let permissions : CBAttributePermissions = [.readable]
             
-            myChar = CBMutableCharacteristic.init(type: soundboardCharacteristicUUID, properties: props, value: nil, permissions: permissions)
-            svc?.characteristics = [myChar!]
+            mChar = CBMutableCharacteristic.init(type: soundboardCharacteristicUUID, properties: props, value: nil, permissions: permissions)
+            svc?.characteristics = [mChar!]
             pMgr?.add(svc!)
             pMgr?.delegate = self
+            
             let adData = [CBAdvertisementDataLocalNameKey:"Not SensorTag", CBAdvertisementDataServiceUUIDsKey:[soundboardServiceUUID]] as [String:Any]
             pMgr?.startAdvertising(adData)
-        }
-    }
-    
-    
-    
-    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        if let req = requests.first {
-            myVal = req.value
-            peripheral.respond(to: req, withResult: .success)
         }
     }
     
@@ -49,13 +41,14 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
         if (btnOne.isSelected || btnTwo.isSelected || btnThree.isSelected
             || btnFour.isSelected || btnFive.isSelected || btnSix.isSelected) {
         
-        peripheral.updateValue(self.myVal!, for: self.myChar!, onSubscribedCentrals: nil)
+        peripheral.updateValue(self.mVal!, for: self.mChar!, onSubscribedCentrals: nil)
             }
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
-        request.value = myVal
+        request.value = mVal
         peripheral.respond(to: request, withResult: .success)
+        
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
@@ -75,14 +68,15 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
     
     var pMgr : CBPeripheralManager?
     var svc : CBMutableService?
-    var myChar : CBMutableCharacteristic?
-    var myVal : Data?
+    var mChar : CBMutableCharacteristic?
+    var mVal : Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         pMgr = CBPeripheralManager.init(delegate: self, queue: nil)
         
+        // Disable buttons until a connection is made
         self.btnOne.isEnabled = false
         self.btnTwo.isEnabled = false
         self.btnThree.isEnabled = false
@@ -96,28 +90,47 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // Set buttons to a string of the numeric values 1-6.
     @IBAction func buttonOne(_ sender: UIButton) {
-        self.myVal = "1".data(using: .utf8)
+        // Assign value
+        self.mVal = "1".data(using: .utf8)
+        // Update Characteristic
+        pMgr?.updateValue(mVal!, for: mChar!, onSubscribedCentrals: nil)
     }
     
     @IBAction func buttonTwo(_ sender: UIButton) {
-        self.myVal = "2".data(using: .utf8)
+        // Assign value
+        self.mVal = "2".data(using: .utf8)
+        // Update Characteristic
+        pMgr?.updateValue(mVal!, for: mChar!, onSubscribedCentrals: nil)
     }
     
     @IBAction func buttonThree(_ sender: UIButton) {
-        self.myVal = "3".data(using: .utf8)
+        // Assign value
+        self.mVal = "3".data(using: .utf8)
+        // Update Characteristic
+        pMgr?.updateValue(mVal!, for: mChar!, onSubscribedCentrals: nil)
     }
     
     @IBAction func buttonFour(_ sender: UIButton) {
-        self.myVal = "4".data(using: .utf8)
+        // Assign value
+        self.mVal = "4".data(using: .utf8)
+        // Update Characteristic
+        pMgr?.updateValue(mVal!, for: mChar!, onSubscribedCentrals: nil)
     }
     
     @IBAction func buttonFive(_ sender: UIButton) {
-        self.myVal = "5".data(using: .utf8)
+        // Assign value
+        self.mVal = "5".data(using: .utf8)
+        // Update Characteristic
+        pMgr?.updateValue(mVal!, for: mChar!, onSubscribedCentrals: nil)
     }
     
     @IBAction func buttonSix(_ sender: UIButton) {
-        self.myVal = "6".data(using: .utf16)
+        // Assign value
+        self.mVal = "6".data(using: .utf16)
+        // Update Characteristic
+        pMgr?.updateValue(mVal!, for: mChar!, onSubscribedCentrals: nil)
     }
     
 }
