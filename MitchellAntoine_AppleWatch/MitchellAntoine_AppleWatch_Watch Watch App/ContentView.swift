@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  MitchellAntoine_AppleWatch Watch App
+//  MitchellAntoine_AppleWatch_Watch Watch App
 //
 //  Created by Antoine Mitchell on 12/2/22.
 //
