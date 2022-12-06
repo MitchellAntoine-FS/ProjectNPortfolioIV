@@ -19,6 +19,7 @@
 		64C83DB1293AD54F00A3D135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C83DB0293AD54F00A3D135 /* Preview Assets.xcassets */; };
 		64C83DB4293AD54F00A3D135 /* MitchellAntoine_AppleWatch_Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 64C83DA7293AD54E00A3D135 /* MitchellAntoine_AppleWatch_Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64C83DBA293ECE0E00A3D135 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C83DB9293ECE0E00A3D135 /* InterfaceController.swift */; };
+		64C83DBE293F15C600A3D135 /* Strain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C83DBD293F15C600A3D135 /* Strain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		64C83DAD293AD54F00A3D135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64C83DB0293AD54F00A3D135 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		64C83DB9293ECE0E00A3D135 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		64C83DBD293F15C600A3D135 /* Strain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				64C83D8F293AD4CD00A3D135 /* AppDelegate.swift */,
 				64C83D91293AD4CD00A3D135 /* SceneDelegate.swift */,
 				64C83D93293AD4CD00A3D135 /* ViewController.swift */,
+				64C83DBD293F15C600A3D135 /* Strain.swift */,
 				64C83D95293AD4CD00A3D135 /* Main.storyboard */,
 				64C83D98293AD4CE00A3D135 /* Assets.xcassets */,
 				64C83D9A293AD4CE00A3D135 /* LaunchScreen.storyboard */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C83D94293AD4CD00A3D135 /* ViewController.swift in Sources */,
+				64C83DBE293F15C600A3D135 /* Strain.swift in Sources */,
 				64C83D90293AD4CD00A3D135 /* AppDelegate.swift in Sources */,
 				64C83D92293AD4CD00A3D135 /* SceneDelegate.swift in Sources */,
 			);
