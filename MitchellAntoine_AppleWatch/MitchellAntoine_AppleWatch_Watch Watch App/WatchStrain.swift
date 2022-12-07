@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct WatchStrain: Hashable, Codable {
+class WatchStrain: NSObject {
     
     var name: String
     var effects: String
@@ -17,4 +17,10 @@ struct WatchStrain: Hashable, Codable {
     var image: Image {
             Image(imageName)
         }
+    
+    init(name: String, effects: String, imageName: String) {
+        self.name = name
+        self.effects = effects
+        self.imageName = imageName
+    }
 }
