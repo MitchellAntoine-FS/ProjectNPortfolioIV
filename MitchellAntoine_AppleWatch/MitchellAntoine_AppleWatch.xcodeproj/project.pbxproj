@@ -20,6 +20,7 @@
 		64C83DB4293AD54F00A3D135 /* MitchellAntoine_AppleWatch_Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 64C83DA7293AD54E00A3D135 /* MitchellAntoine_AppleWatch_Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64C83DBA293ECE0E00A3D135 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C83DB9293ECE0E00A3D135 /* InterfaceController.swift */; };
 		64C83DBE293F15C600A3D135 /* Strain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C83DBD293F15C600A3D135 /* Strain.swift */; };
+		64FC902229406CE200C50462 /* WatchStrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC902129406CE200C50462 /* WatchStrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		64C83DB0293AD54F00A3D135 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		64C83DB9293ECE0E00A3D135 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		64C83DBD293F15C600A3D135 /* Strain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strain.swift; sourceTree = "<group>"; };
+		64FC902129406CE200C50462 /* WatchStrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				64C83DA9293AD54E00A3D135 /* MitchellAntoine_AppleWatch_WatchApp.swift */,
 				64C83DB9293ECE0E00A3D135 /* InterfaceController.swift */,
+				64FC902129406CE200C50462 /* WatchStrain.swift */,
 				64C83DAB293AD54E00A3D135 /* ContentView.swift */,
 				64C83DAD293AD54F00A3D135 /* Assets.xcassets */,
 				64C83DAF293AD54F00A3D135 /* Preview Content */,
@@ -249,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64FC902229406CE200C50462 /* WatchStrain.swift in Sources */,
 				64C83DBA293ECE0E00A3D135 /* InterfaceController.swift in Sources */,
 				64C83DAC293AD54E00A3D135 /* ContentView.swift in Sources */,
 				64C83DAA293AD54E00A3D135 /* MitchellAntoine_AppleWatch_WatchApp.swift in Sources */,
