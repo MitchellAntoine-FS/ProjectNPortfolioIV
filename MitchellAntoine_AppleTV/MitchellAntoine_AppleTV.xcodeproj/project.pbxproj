@@ -101,11 +101,11 @@
 			children = (
 				64FC90A82945198B00C50462 /* AppDelegate.swift */,
 				64FC90AA2945198B00C50462 /* ViewController.swift */,
+				64FC90CE294525D600C50462 /* TopShelfData.swift */,
+				64FC90D029454B4C00C50462 /* Shows.swift */,
 				64FC90AC2945198B00C50462 /* Main.storyboard */,
 				64FC90AF2945198D00C50462 /* Assets.xcassets */,
 				64FC90B12945198D00C50462 /* LaunchScreen.storyboard */,
-				64FC90CE294525D600C50462 /* TopShelfData.swift */,
-				64FC90D029454B4C00C50462 /* Shows.swift */,
 			);
 			path = MitchellAntoine_AppleTV;
 			sourceTree = "<group>";

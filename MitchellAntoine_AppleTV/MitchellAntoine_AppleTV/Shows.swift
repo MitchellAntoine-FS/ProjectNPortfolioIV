@@ -11,14 +11,28 @@ import UIKit
 class Shows: NSObject {
     
     /* Stored Properites */
-    let category: String
+    
+    // Categories
+    var anime: [String]
+    var drama: [String]
+    var action: [String]
+    
     let title: String
+    let category: String
     let discription: String
     let airDate: String
     let imageName: String
     
-    init(category: String, title: String, discription: String, airDate: String, imageName: String) {
-        self.category = category
+    /* Computed Properties */
+    var list: [[String]] {
+        //        switch (category) {
+//    }
+        
+        return [anime, drama, action]
+    }
+    
+    init(title: String, discription: String, airDate: String, imageName: String) {
+        
         self.title = title
         self.discription = discription
         self.airDate = airDate
