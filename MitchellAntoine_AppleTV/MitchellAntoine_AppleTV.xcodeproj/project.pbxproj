@@ -17,6 +17,7 @@
 		64FC90C72945218A00C50462 /* TopShelfDisplay.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 64FC90BD2945218A00C50462 /* TopShelfDisplay.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64FC90CF294525D600C50462 /* TopShelfData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90CE294525D600C50462 /* TopShelfData.swift */; };
 		64FC90D129454B4C00C50462 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90D029454B4C00C50462 /* Shows.swift */; };
+		64FC90D329458EBA00C50462 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90D229458EBA00C50462 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		64FC90C42945218A00C50462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64FC90CE294525D600C50462 /* TopShelfData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopShelfData.swift; sourceTree = "<group>"; };
 		64FC90D029454B4C00C50462 /* Shows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
+		64FC90D229458EBA00C50462 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				64FC90A82945198B00C50462 /* AppDelegate.swift */,
 				64FC90AA2945198B00C50462 /* ViewController.swift */,
+				64FC90D229458EBA00C50462 /* DetailViewController.swift */,
 				64FC90CE294525D600C50462 /* TopShelfData.swift */,
 				64FC90D029454B4C00C50462 /* Shows.swift */,
 				64FC90AC2945198B00C50462 /* Main.storyboard */,
@@ -230,6 +233,7 @@
 			files = (
 				64FC90AB2945198B00C50462 /* ViewController.swift in Sources */,
 				64FC90A92945198B00C50462 /* AppDelegate.swift in Sources */,
+				64FC90D329458EBA00C50462 /* DetailViewController.swift in Sources */,
 				64FC90D129454B4C00C50462 /* Shows.swift in Sources */,
 				64FC90CF294525D600C50462 /* TopShelfData.swift in Sources */,
 			);

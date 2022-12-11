@@ -19,19 +19,11 @@ class Shows: NSObject {
     
     let title: String
     let category: String
-    let discription: String
     let airDate: String
     let imageName: String
+    let discription: String
     
-    /* Computed Properties */
-    var list: [[String]] {
-        //        switch (category) {
-//    }
-        
-        return [anime, drama, action]
-    }
-    
-    init(title: String, discription: String, airDate: String, imageName: String) {
+    init(title: String, airDate: String, imageName: String, category: String, discription: String) {
         
         self.title = title
         self.discription = discription

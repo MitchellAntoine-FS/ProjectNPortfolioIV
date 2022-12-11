@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="21507" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="21507" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fHJ-lL-c98">
     <device id="appleTV" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="Ycc-Ud-f2p">
-                                <rect key="frame" x="80" y="60" width="1760" height="960"/>
+                                <rect key="frame" x="80" y="205" width="1760" height="815"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TV01" textLabel="J4w-TG-le2" rowHeight="100" style="IBUITableViewCellStyleDefault" id="G66-Cn-t9W">
                                         <rect key="frame" x="0.0" y="66" width="1760" height="100"/>
@@ -38,6 +38,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vKl-P4-W8O" kind="show" id="wIl-hE-B4V"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -51,13 +54,51 @@
                             <constraint firstItem="Ycc-Ud-f2p" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" id="jCz-ve-sKw"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cIo-bv-0gU"/>
                     <connections>
                         <outlet property="tableView" destination="Ycc-Ud-f2p" id="u0d-hs-sHf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="3"/>
+            <point key="canvasLocation" x="2900" y="81"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="UNX-2X-hdQ">
+            <objects>
+                <viewController title="DetailViewController" id="vKl-P4-W8O" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C5S-e7-oe2"/>
+                        <viewControllerLayoutGuide type="bottom" id="pDd-9B-alp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xSE-s4-L5x">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="J2c-7b-d0w"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZN5-4d-nP0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DUC-Ah-8lJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2900" y="1534"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IdK-FC-Lf6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fHJ-lL-c98" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D6e-nK-Euk">
+                        <rect key="frame" x="0.0" y="60" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="MQT-gh-1jn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XgE-Xn-tnv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768" y="81"/>
         </scene>
     </scenes>
 </document>
