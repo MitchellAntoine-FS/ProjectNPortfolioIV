@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct StrainRow: View {
-    var watchStrain = [WatchStrain]()
+    var watchStrain: WatchStrain
     
     var body: some View {
         VStack {
-            
+            watchStrain.image
+                .resizable()
+                .frame(width: 50, height: 50)
         }
     }
 }
 
 struct StrainRow_Previews: PreviewProvider {
     static var previews: some View {
-        StrainRow()
+        StrainRow(watchStrain: watchStrains[0])
     }
 }
