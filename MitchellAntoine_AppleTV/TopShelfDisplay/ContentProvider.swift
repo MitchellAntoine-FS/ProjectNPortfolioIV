@@ -52,9 +52,9 @@ class ContentProvider: TVTopShelfContentProvider {
           //    Don't forget to set a title on these so your section has a displayed name!
 
         let animeCollection: TVTopShelfItemCollection = TVTopShelfItemCollection(items: animeArray)
-        animeCollection.title = "Anime"
+        animeCollection.title = "Drama"
         let dramaCollection: TVTopShelfItemCollection = TVTopShelfItemCollection(items: dramaArray)
-        dramaCollection.title = "Drama"
+        dramaCollection.title = "Anime"
         let actionCollection: TVTopShelfItemCollection = TVTopShelfItemCollection(items: actionArray)
         actionCollection.title = "Action"
 

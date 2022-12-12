@@ -28,28 +28,30 @@ class DetailViewController: UIViewController {
             discriptionLabel.text = show.discription
             airDateLabel.text = show.airDate
             
-//            var imageURL: URL {
-//                guard let imageUrl = Bundle.main.url(forResource: show.imageNam, withExtension: "jpg")
-//                else {
-//                    fatalError("Error getting local image URL")
-//                }
-//                return imageUrl
-//            }
-            
-//            if let data = try? Data(contentsOf: imageURL) {
-//                if let image = UIImage(data: data) {
-//
-//                    self.imageLabel.image = image
-//                }
-//            }
-           
+            var imageURL: URL {
+                guard let imageUrl = Bundle.main.url(forResource: show.imageNam.lowercased(), withExtension: "jpeg")
+                else {
+                    fatalError("Error getting local image URL")
+                }
+                return imageUrl
+            }
+
+            if let data = try? Data(contentsOf: imageURL) {
+                if let image = UIImage(data: data) {
+
+                    self.imageLabel.image = image
+                }
+            }
+
         }
-        
+
     }
     
     @IBAction func backButton(_ sender: UIBarButtonItem ) {
         
+        self.navigationController?.popViewController(animated: true)
     }
     
     
 }
+

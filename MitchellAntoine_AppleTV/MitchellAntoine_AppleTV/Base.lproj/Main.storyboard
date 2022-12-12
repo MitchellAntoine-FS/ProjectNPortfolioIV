@@ -119,7 +119,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZN5-4d-nP0">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="T1p-wJ-s8I">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="blP-Ii-hX6"/>
+                        <barButtonItem key="leftBarButtonItem" id="T1p-wJ-s8I">
                             <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
                             <connections>
                                 <action selector="backButton:" destination="vKl-P4-W8O" id="ELx-ae-b32"/>

@@ -11,11 +11,11 @@ struct TVTopShelfData {
     
     //The groups here will be used to define and separate the types of content for our top shelf. This makes it easy for us to separate content, especially for the segmented style of top shelf.
     enum Group:String {
-        case Anime
-        case Drama
-        case Action
+        case anime
+        case drama
+        case action
         
-        static let allGroups: [Group] = [.Anime, .Drama, .Action]
+        static let allGroups: [Group] = [.anime, .drama, .action]
     }
     
     //Each item will be part of one of our two defined groups
@@ -38,7 +38,7 @@ struct TVTopShelfData {
     
     //Create an image URL so that the top shelf can find our images in the file system of the OS as the top shelf runs when our app is asleep
     var localImageUrl: URL {
-        guard let imageUrl = Bundle.main.url(forResource: imageName, withExtension: "jpg")
+        guard let imageUrl = Bundle.main.url(forResource: imageName, withExtension: "jpeg")
         else {
             fatalError("Error getting local image URL")
         }
@@ -50,30 +50,30 @@ struct TVTopShelfData {
 extension TVTopShelfData {
     //All of the data items
     static var showItems: [TVTopShelfData] = {
-        return[TVTopShelfData(group: .Anime, number: 1, title: "Anime 1"),
-               TVTopShelfData(group: .Anime, number: 2, title: "Anime 2"),
-               TVTopShelfData(group: .Anime, number: 3, title: "Anime 3"),
-               TVTopShelfData(group: .Anime, number: 4, title: "Anime 4"),
-               TVTopShelfData(group: .Anime, number: 5, title: "Anime 5"),
+        return[TVTopShelfData(group: .anime, number: 1, title: "Anime 1"),
+               TVTopShelfData(group: .anime, number: 2, title: "Anime 2"),
+               TVTopShelfData(group: .anime, number: 3, title: "Anime 3"),
+               TVTopShelfData(group: .anime, number: 4, title: "Anime 4"),
+               TVTopShelfData(group: .anime, number: 5, title: "Anime 5"),
                
-               TVTopShelfData(group: .Drama, number: 1, title: "Drama 1"),
-               TVTopShelfData(group: .Drama, number: 2, title: "Drama 2"),
-               TVTopShelfData(group: .Drama, number: 3, title: "Drama 3"),
-               TVTopShelfData(group: .Drama, number: 4, title: "Drama 4"),
-               TVTopShelfData(group: .Drama, number: 5, title: "Drama 5"),
+               TVTopShelfData(group: .drama, number: 1, title: "Drama 1"),
+               TVTopShelfData(group: .drama, number: 2, title: "Drama 2"),
+               TVTopShelfData(group: .drama, number: 3, title: "Drama 3"),
+               TVTopShelfData(group: .drama, number: 4, title: "Drama 4"),
+               TVTopShelfData(group: .drama, number: 5, title: "Drama 5"),
                
-               TVTopShelfData(group: .Action, number: 1, title: "Action 1"),
-               TVTopShelfData(group: .Action, number: 2, title: "Action 2"),
-               TVTopShelfData(group: .Action, number: 3, title: "Action 3"),
-               TVTopShelfData(group: .Action, number: 4, title: "Action 4"),
-               TVTopShelfData(group: .Action, number: 5, title: "Action 5"),
+               TVTopShelfData(group: .action, number: 1, title: "Action 1"),
+               TVTopShelfData(group: .action, number: 2, title: "Action 2"),
+               TVTopShelfData(group: .action, number: 3, title: "Action 3"),
+               TVTopShelfData(group: .action, number: 4, title: "Action 4"),
+               TVTopShelfData(group: .action, number: 5, title: "Action 5"),
                ]
     }()
     
     //Create a sample array of just the anime group content
     static var animeSampleItems: [TVTopShelfData] = {
         //Filter our main data set by the Anime group.
-        let showItems = TVTopShelfData.showItems.filter {$0.group == .Drama}
+        let showItems = TVTopShelfData.showItems.filter {$0.group == .drama}
        
          return Array(showItems.prefix(2))
     }()
@@ -81,7 +81,7 @@ extension TVTopShelfData {
     //Create a sample array of just the drama group content
     static var dramaSampleItems: [TVTopShelfData] = {
         //Filter our main data set by the Drama group.
-        let showItems = TVTopShelfData.showItems.filter {$0.group == .Anime}
+        let showItems = TVTopShelfData.showItems.filter {$0.group == .anime}
         
          return Array(showItems.prefix(2))
     }()
@@ -89,7 +89,7 @@ extension TVTopShelfData {
     //Create a sample array of just the action group content
     static var actionSampleItems: [TVTopShelfData] = {
         //Filter our main data set by the Action group.
-        let showItems = TVTopShelfData.showItems.filter {$0.group == .Action}
+        let showItems = TVTopShelfData.showItems.filter {$0.group == .action}
         
          return Array(showItems.prefix(2))
     }()
