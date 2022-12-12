@@ -18,6 +18,15 @@ class ContentProvider: TVTopShelfContentProvider {
         let scrollingDramaData = TVTopShelfData.dramaSampleItems
         let scrollingActionData = TVTopShelfData.actionSampleItems
         
+        let animeArray: [TVTopShelfSectionedItem] = scrollingAnimeData.map {
+            newData in
+            let animeItem = TVTopShelfSectionedItem.init(identifier: newData.identifier)
+            animeItem.title = newData.title
+            animeItem.setImageURL(newData.localImageUrl, for: .screenScale1x)
+            animeItem.setImageURL(newData.localImageUrl, for: .screenScale2x)
+            
+            return animeItem
+        }
         
         // TODO: With those 3 arrays you'll need to make 3 TVTopShelfItemCollection objects, 1 for each section.
           //    Don't forget to set a title on these so your section has a displayed name!

@@ -36,8 +36,7 @@ class DetailViewController: UIViewController {
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                         
-                    self.imageLabel.image = image
-                                
+                    self.imageLabel.image = image            
                 }
             }
            
