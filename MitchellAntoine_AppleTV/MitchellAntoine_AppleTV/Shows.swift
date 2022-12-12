@@ -12,11 +12,6 @@ class Shows: NSObject {
     
     /* Stored Properites */
     
-    // Categories
-    var anime: [String]
-    var drama: [String]
-    var action: [String]
-    
     let title: String
     let category: String
     let airDate: String
@@ -29,6 +24,7 @@ class Shows: NSObject {
         self.discription = discription
         self.airDate = airDate
         self.imageNam = imageNam
+        self.category = category
     }
     
 }

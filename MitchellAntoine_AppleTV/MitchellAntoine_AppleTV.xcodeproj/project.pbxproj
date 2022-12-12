@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64915A862946E26C0077FDC9 /* TopShelfData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90CE294525D600C50462 /* TopShelfData.swift */; };
 		64FC90A92945198B00C50462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90A82945198B00C50462 /* AppDelegate.swift */; };
 		64FC90AB2945198B00C50462 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90AA2945198B00C50462 /* ViewController.swift */; };
 		64FC90AE2945198B00C50462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90AC2945198B00C50462 /* Main.storyboard */; };
@@ -15,7 +16,6 @@
 		64FC90C02945218A00C50462 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FC90BF2945218A00C50462 /* TVServices.framework */; };
 		64FC90C32945218A00C50462 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90C22945218A00C50462 /* ContentProvider.swift */; };
 		64FC90C72945218A00C50462 /* TopShelfDisplay.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 64FC90BD2945218A00C50462 /* TopShelfDisplay.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		64FC90CF294525D600C50462 /* TopShelfData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90CE294525D600C50462 /* TopShelfData.swift */; };
 		64FC90D129454B4C00C50462 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90D029454B4C00C50462 /* Shows.swift */; };
 		64FC90D329458EBA00C50462 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90D229458EBA00C50462 /* DetailViewController.swift */; };
 		64FC90E429468BF800C50462 /* Action1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90D529468BF800C50462 /* Action1.jpeg */; };
@@ -134,7 +134,6 @@
 				64FC90A82945198B00C50462 /* AppDelegate.swift */,
 				64FC90AA2945198B00C50462 /* ViewController.swift */,
 				64FC90D229458EBA00C50462 /* DetailViewController.swift */,
-				64FC90CE294525D600C50462 /* TopShelfData.swift */,
 				64FC90D029454B4C00C50462 /* Shows.swift */,
 				64FC90AC2945198B00C50462 /* Main.storyboard */,
 				64FC90AF2945198D00C50462 /* Assets.xcassets */,
@@ -154,6 +153,7 @@
 		64FC90C12945218A00C50462 /* TopShelfDisplay */ = {
 			isa = PBXGroup;
 			children = (
+				64FC90CE294525D600C50462 /* TopShelfData.swift */,
 				64FC90D429468B9C00C50462 /* Images */,
 				64FC90C22945218A00C50462 /* ContentProvider.swift */,
 				64FC90C42945218A00C50462 /* Info.plist */,
@@ -303,7 +303,6 @@
 				64FC90A92945198B00C50462 /* AppDelegate.swift in Sources */,
 				64FC90D329458EBA00C50462 /* DetailViewController.swift in Sources */,
 				64FC90D129454B4C00C50462 /* Shows.swift in Sources */,
-				64FC90CF294525D600C50462 /* TopShelfData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64915A862946E26C0077FDC9 /* TopShelfData.swift in Sources */,
 				64FC90C32945218A00C50462 /* ContentProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

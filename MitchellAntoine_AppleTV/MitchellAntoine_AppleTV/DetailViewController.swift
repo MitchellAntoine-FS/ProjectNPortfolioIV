@@ -23,6 +23,25 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if (show != nil) {
+            titleLabel.text = show.title
+            discriptionLabel.text = show.discription
+            airDateLabel.text = show.airDate
+            
+            guard let url = Bundle.main.url(forResource: show.imageNam, withExtension: "jpg")
+            else {
+                fatalError("Error getting local image URL")
+            }
+            
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                        
+                    self.imageLabel.image = image
+                                
+                }
+            }
+           
+        }
         
     }
     

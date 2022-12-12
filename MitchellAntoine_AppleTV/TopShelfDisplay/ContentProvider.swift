@@ -13,7 +13,12 @@ class ContentProvider: TVTopShelfContentProvider {
         
         // TODO: Create an array of TVTopShelfSectiondItem objects for each section you want to display.
               //There should be 3 in total and they are created like we did above for the inset style shelf, just with TVTopShelfSectionedItem objects instead of TVTopShelfItem objects. Don't forget to set the
-
+                
+        let scrollingAnimeData = TVTopShelfData.animeSampleItems
+        let scrollingDramaData = TVTopShelfData.dramaSampleItems
+        let scrollingActionData = TVTopShelfData.actionSampleItems
+        
+        
         // TODO: With those 3 arrays you'll need to make 3 TVTopShelfItemCollection objects, 1 for each section.
           //    Don't forget to set a title on these so your section has a displayed name!
 
