@@ -28,14 +28,40 @@ class ContentProvider: TVTopShelfContentProvider {
             return animeItem
         }
         
+        let dramaArray: [TVTopShelfSectionedItem] = scrollingDramaData.map {
+            newData in
+            let dramaItem = TVTopShelfSectionedItem.init(identifier: newData.identifier)
+            dramaItem.title = newData.title
+            dramaItem.setImageURL(newData.localImageUrl, for: .screenScale1x)
+            dramaItem.setImageURL(newData.localImageUrl, for: .screenScale2x)
+            
+            return dramaItem
+        }
+        
+        let actionArray: [TVTopShelfSectionedItem] = scrollingActionData.map {
+            newData in
+            let actionItem = TVTopShelfSectionedItem.init(identifier: newData.identifier)
+            actionItem.title = newData.title
+            actionItem.setImageURL(newData.localImageUrl, for: .screenScale1x)
+            actionItem.setImageURL(newData.localImageUrl, for: .screenScale2x)
+            
+            return actionItem
+        }
+        
         // TODO: With those 3 arrays you'll need to make 3 TVTopShelfItemCollection objects, 1 for each section.
           //    Don't forget to set a title on these so your section has a displayed name!
 
+        let animeCollection: TVTopShelfItemCollection = TVTopShelfItemCollection(items: animeArray)
+        animeCollection.title = "Anime"
+        let dramaCollection: TVTopShelfItemCollection = TVTopShelfItemCollection(items: dramaArray)
+        dramaCollection.title = "Drama"
+        let actionCollection: TVTopShelfItemCollection = TVTopShelfItemCollection(items: actionArray)
+        actionCollection.title = "Action"
 
         // TODO: Create a TVTopShelfSectionedContent with those 3 TVTopShelfItemCollection objects and return it with the reply handler just as we did above
-        
+        let sectionContent = TVTopShelfSectionedContent(sections: [animeCollection, dramaCollection, actionCollection])
         // Fetch content and call completionHandler
-        completionHandler(nil);
+        completionHandler(sectionContent);
     }
     
 

@@ -36,18 +36,10 @@ struct TVTopShelfData {
         return "\(group.rawValue)\(number)"
     }
     
-    //Define a URL string for remote images
-    var remoteImageURL: String = ""
-    
-    //Define a URL string for remote images
-    var remoteVideoURL: String = ""
-    
-    
     //Create an image URL so that the top shelf can find our images in the file system of the OS as the top shelf runs when our app is asleep
-    var localImageUrl: URL
-    {
-        guard let imageUrl = Bundle.main.url(forResource: imageName, withExtension: "jpg") else
-        {
+    var localImageUrl: URL {
+        guard let imageUrl = Bundle.main.url(forResource: imageName, withExtension: "jpg")
+        else {
             fatalError("Error getting local image URL")
         }
         return imageUrl
@@ -82,7 +74,7 @@ extension TVTopShelfData {
     static var animeSampleItems: [TVTopShelfData] = {
         //Filter our main data set by the Anime group.
         let showItems = TVTopShelfData.showItems.filter {$0.group == .Drama}
-        //Return an array using the prefix method. This means that however many items for the number we pass in, starting at the front of the array, are put in a new array and passed back.
+       
          return Array(showItems.prefix(2))
     }()
     

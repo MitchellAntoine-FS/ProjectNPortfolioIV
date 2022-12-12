@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TV01", for: indexPath)
         
-        cell.textLabel?.text = showsArray[indexPath.row].title
+        cell.textLabel?.text = filteredShows[indexPath.section][indexPath.row].title
         
         return cell
     }

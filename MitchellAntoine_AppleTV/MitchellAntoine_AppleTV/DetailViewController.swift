@@ -28,17 +28,20 @@ class DetailViewController: UIViewController {
             discriptionLabel.text = show.discription
             airDateLabel.text = show.airDate
             
-            guard let url = Bundle.main.url(forResource: show.imageNam, withExtension: "jpg")
-            else {
-                fatalError("Error getting local image URL")
-            }
+//            var imageURL: URL {
+//                guard let imageUrl = Bundle.main.url(forResource: show.imageNam, withExtension: "jpg")
+//                else {
+//                    fatalError("Error getting local image URL")
+//                }
+//                return imageUrl
+//            }
             
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                        
-                    self.imageLabel.image = image            
-                }
-            }
+//            if let data = try? Data(contentsOf: imageURL) {
+//                if let image = UIImage(data: data) {
+//
+//                    self.imageLabel.image = image
+//                }
+//            }
            
         }
         
