@@ -11,11 +11,11 @@ struct TVTopShelfData {
     
     //The groups here will be used to define and separate the types of content for our top shelf. This makes it easy for us to separate content, especially for the segmented style of top shelf.
     enum Group:String {
-        case Pillars
-        case Rocks
-        case Video
+        case Anime
+        case Drama
+        case Action
         
-        static let allGroups: [Group] = [.Pillars, .Rocks, .Video]
+        static let allGroups: [Group] = [.Anime, .Drama, .Action]
     }
     
     //Each item will be part of one of our two defined groups
@@ -57,49 +57,49 @@ struct TVTopShelfData {
 //This extension is used to construct all of our TVTopShelfData items and create some data sets for use later in either our top shelf or the app
 extension TVTopShelfData {
     //All of the data items
-    static var sampleItems: [TVTopShelfData] = {
-        return[TVTopShelfData(group: .Pillars, number: 1, title: "Pillars 1"),
-               TVTopShelfData(group: .Pillars, number: 2, title: "Pillars 2"),
-               TVTopShelfData(group: .Pillars, number: 3, title: "Pillars 3"),
+    static var showItems: [TVTopShelfData] = {
+        return[TVTopShelfData(group: .Anime, number: 1, title: "Anime 1"),
+               TVTopShelfData(group: .Anime, number: 2, title: "Anime 2"),
+               TVTopShelfData(group: .Anime, number: 3, title: "Anime 3"),
+               TVTopShelfData(group: .Anime, number: 4, title: "Anime 4"),
+               TVTopShelfData(group: .Anime, number: 5, title: "Anime 5"),
                
-               TVTopShelfData(group: .Rocks, number: 1, title: "Rocks 1"),
-               TVTopShelfData(group: .Rocks, number: 2, title: "Rocks 2"),
-               TVTopShelfData(group: .Rocks, number: 3, title: "Rocks 3"),
+               TVTopShelfData(group: .Drama, number: 1, title: "Drama 1"),
+               TVTopShelfData(group: .Drama, number: 2, title: "Drama 2"),
+               TVTopShelfData(group: .Drama, number: 3, title: "Drama 3"),
+               TVTopShelfData(group: .Drama, number: 4, title: "Drama 4"),
+               TVTopShelfData(group: .Drama, number: 5, title: "Drama 5"),
                
-               TVTopShelfData(group: .Video, number: 1, title: "Big Buck Bunny",
-                              remoteImageURL: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
-                              remoteVideoURL: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
-               TVTopShelfData(group: .Video, number: 2, title: "Elephant Dream",
-                              remoteImageURL: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
-                              remoteVideoURL: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"),
-               TVTopShelfData(group: .Video, number: 3, title: "Sintel",
-                              remoteImageURL: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg",
-                              remoteVideoURL: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"),
+               TVTopShelfData(group: .Action, number: 1, title: "Action 1"),
+               TVTopShelfData(group: .Action, number: 2, title: "Action 2"),
+               TVTopShelfData(group: .Action, number: 3, title: "Action 3"),
+               TVTopShelfData(group: .Action, number: 4, title: "Action 4"),
+               TVTopShelfData(group: .Action, number: 5, title: "Action 5"),
                ]
     }()
     
-    //Create a sample array of just the rock group content
-    static var rockSampleItems: [TVTopShelfData] = {
-        //Filter our main data set by the Rocks group.
-        let pillarItems = TVTopShelfData.sampleItems.filter {$0.group == .Rocks}
-        //Return an array using the prefix method. This means that however many items for the number we pass in, starting at the front of the array, are put in a new array and passed back. It's redundant in this case as we only have 3 total but if you had 100 it wouldn't make sense to put all of them in the top shelf since the user won't want to scroll through 100 items before even getting into the app.
-         return Array(pillarItems.prefix(3))
+    //Create a sample array of just the anime group content
+    static var animeSampleItems: [TVTopShelfData] = {
+        //Filter our main data set by the Anime group.
+        let showItems = TVTopShelfData.showItems.filter {$0.group == .Drama}
+        //Return an array using the prefix method. This means that however many items for the number we pass in, starting at the front of the array, are put in a new array and passed back.
+         return Array(showItems.prefix(2))
     }()
     
-    //Create a sample array of just the pillars group content
-    static var pillarSampleItems: [TVTopShelfData] = {
-        //Filter our main data set by the Pillars group.
-        let pillarItems = TVTopShelfData.sampleItems.filter {$0.group == .Pillars}
-        //See above for additional explaination
-         return Array(pillarItems.prefix(3))
+    //Create a sample array of just the drama group content
+    static var dramaSampleItems: [TVTopShelfData] = {
+        //Filter our main data set by the Drama group.
+        let showItems = TVTopShelfData.showItems.filter {$0.group == .Anime}
+        
+         return Array(showItems.prefix(2))
     }()
     
-    //Create a sample array of just the video group content
-    static var videoSampleItems: [TVTopShelfData] = {
-        //Filter our main data set by the Video group.
-        let pillarItems = TVTopShelfData.sampleItems.filter {$0.group == .Video}
-        //See above for additional explaination
-         return Array(pillarItems.prefix(3))
+    //Create a sample array of just the action group content
+    static var actionSampleItems: [TVTopShelfData] = {
+        //Filter our main data set by the Action group.
+        let showItems = TVTopShelfData.showItems.filter {$0.group == .Action}
+        
+         return Array(showItems.prefix(2))
     }()
 }
 

@@ -20,15 +20,15 @@ class Shows: NSObject {
     let title: String
     let category: String
     let airDate: String
-    let imageName: String
+    let imageNam: String
     let discription: String
     
-    init(title: String, airDate: String, imageName: String, category: String, discription: String) {
+    init(title: String, airDate: String, imageNam: String, category: String, discription: String) {
         
         self.title = title
         self.discription = discription
         self.airDate = airDate
-        self.imageName = imageName
+        self.imageNam = imageNam
     }
     
 }

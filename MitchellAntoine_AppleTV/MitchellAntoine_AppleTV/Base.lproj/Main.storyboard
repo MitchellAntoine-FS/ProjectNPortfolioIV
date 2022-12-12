@@ -3,6 +3,7 @@
     <device id="appleTV" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,7 +67,7 @@
         <!--DetailViewController-->
         <scene sceneID="UNX-2X-hdQ">
             <objects>
-                <viewController title="DetailViewController" id="vKl-P4-W8O" sceneMemberID="viewController">
+                <viewController title="DetailViewController" id="vKl-P4-W8O" customClass="DetailViewController" customModule="MitchellAntoine_AppleTV" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C5S-e7-oe2"/>
                         <viewControllerLayoutGuide type="bottom" id="pDd-9B-alp"/>
@@ -74,9 +75,63 @@
                     <view key="view" contentMode="scaleToFill" id="xSE-s4-L5x">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oan-Ny-GxQ">
+                                <rect key="frame" x="419" y="213" width="1082" height="484"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="484" id="TN5-uE-zG8"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0D-QS-3ST">
+                                <rect key="frame" x="419" y="705" width="1082" height="91"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discription" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiX-KH-lfW">
+                                <rect key="frame" x="96" y="804" width="1728" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aire Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dW4-Jp-Wfa">
+                                <rect key="frame" x="96" y="898" width="791" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="J2c-7b-d0w"/>
+                        <constraints>
+                            <constraint firstItem="J2c-7b-d0w" firstAttribute="trailing" secondItem="oan-Ny-GxQ" secondAttribute="trailing" constant="339" id="0p7-dB-KI2"/>
+                            <constraint firstItem="dW4-Jp-Wfa" firstAttribute="leading" secondItem="J2c-7b-d0w" secondAttribute="leading" constant="16" id="1vE-92-1NZ"/>
+                            <constraint firstItem="RiX-KH-lfW" firstAttribute="top" secondItem="e0D-QS-3ST" secondAttribute="bottom" constant="8" id="5wm-qH-agW"/>
+                            <constraint firstItem="J2c-7b-d0w" firstAttribute="trailing" secondItem="RiX-KH-lfW" secondAttribute="trailing" constant="16" id="Au5-BH-IQ5"/>
+                            <constraint firstItem="oan-Ny-GxQ" firstAttribute="leading" secondItem="J2c-7b-d0w" secondAttribute="leading" constant="339" id="F0B-ku-X95"/>
+                            <constraint firstItem="e0D-QS-3ST" firstAttribute="leading" secondItem="J2c-7b-d0w" secondAttribute="leading" constant="339" id="REW-4Y-mUe"/>
+                            <constraint firstItem="e0D-QS-3ST" firstAttribute="top" secondItem="oan-Ny-GxQ" secondAttribute="bottom" constant="8" id="nj3-2Z-SL3"/>
+                            <constraint firstItem="dW4-Jp-Wfa" firstAttribute="top" secondItem="RiX-KH-lfW" secondAttribute="bottom" constant="48" id="p7z-Kt-xAH"/>
+                            <constraint firstItem="J2c-7b-d0w" firstAttribute="trailing" secondItem="dW4-Jp-Wfa" secondAttribute="trailing" constant="953" id="pfl-tJ-jRr"/>
+                            <constraint firstItem="J2c-7b-d0w" firstAttribute="bottom" secondItem="dW4-Jp-Wfa" secondAttribute="bottom" constant="76" id="tWa-5w-2wf"/>
+                            <constraint firstItem="J2c-7b-d0w" firstAttribute="trailing" secondItem="e0D-QS-3ST" secondAttribute="trailing" constant="339" id="tbC-AE-hEa"/>
+                            <constraint firstItem="RiX-KH-lfW" firstAttribute="leading" secondItem="J2c-7b-d0w" secondAttribute="leading" constant="16" id="tw0-Gu-d1R"/>
+                            <constraint firstItem="oan-Ny-GxQ" firstAttribute="top" secondItem="J2c-7b-d0w" secondAttribute="top" constant="8" id="xgC-0N-4nD"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ZN5-4d-nP0"/>
+                    <navigationItem key="navigationItem" id="ZN5-4d-nP0">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="T1p-wJ-s8I">
+                            <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="backButton:" destination="vKl-P4-W8O" id="ELx-ae-b32"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="airDateLabel" destination="dW4-Jp-Wfa" id="T0P-5J-Dcb"/>
+                        <outlet property="discriptionLabel" destination="RiX-KH-lfW" id="jRY-Km-rli"/>
+                        <outlet property="imageLabel" destination="oan-Ny-GxQ" id="5ju-zm-4nu"/>
+                        <outlet property="titleLabel" destination="e0D-QS-3ST" id="MrU-d7-NQN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUC-Ah-8lJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,4 +156,7 @@
             <point key="canvasLocation" x="768" y="81"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
+    </resources>
 </document>

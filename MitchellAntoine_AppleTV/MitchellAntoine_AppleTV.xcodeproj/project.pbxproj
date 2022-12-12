@@ -18,6 +18,21 @@
 		64FC90CF294525D600C50462 /* TopShelfData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90CE294525D600C50462 /* TopShelfData.swift */; };
 		64FC90D129454B4C00C50462 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90D029454B4C00C50462 /* Shows.swift */; };
 		64FC90D329458EBA00C50462 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC90D229458EBA00C50462 /* DetailViewController.swift */; };
+		64FC90E429468BF800C50462 /* Action1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90D529468BF800C50462 /* Action1.jpeg */; };
+		64FC90E529468BF800C50462 /* Drama5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90D629468BF800C50462 /* Drama5.jpeg */; };
+		64FC90E629468BF800C50462 /* Drama1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90D729468BF800C50462 /* Drama1.jpeg */; };
+		64FC90E729468BF800C50462 /* Drama2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90D829468BF800C50462 /* Drama2.jpeg */; };
+		64FC90E829468BF800C50462 /* Drama4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90D929468BF800C50462 /* Drama4.jpeg */; };
+		64FC90E929468BF800C50462 /* Action4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90DA29468BF800C50462 /* Action4.jpeg */; };
+		64FC90EA29468BF800C50462 /* Anime3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90DB29468BF800C50462 /* Anime3.jpeg */; };
+		64FC90EB29468BF800C50462 /* Anime1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90DC29468BF800C50462 /* Anime1.jpeg */; };
+		64FC90EC29468BF800C50462 /* Action2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90DD29468BF800C50462 /* Action2.jpeg */; };
+		64FC90ED29468BF800C50462 /* Anime4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90DE29468BF800C50462 /* Anime4.jpg */; };
+		64FC90EE29468BF800C50462 /* Drama3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90DF29468BF800C50462 /* Drama3.jpeg */; };
+		64FC90EF29468BF800C50462 /* Actoin3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90E029468BF800C50462 /* Actoin3.jpeg */; };
+		64FC90F029468BF800C50462 /* Anime5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90E129468BF800C50462 /* Anime5.jpg */; };
+		64FC90F129468BF800C50462 /* Anime2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90E229468BF800C50462 /* Anime2.jpeg */; };
+		64FC90F229468BF800C50462 /* Action5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 64FC90E329468BF800C50462 /* Action5.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +73,21 @@
 		64FC90CE294525D600C50462 /* TopShelfData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopShelfData.swift; sourceTree = "<group>"; };
 		64FC90D029454B4C00C50462 /* Shows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		64FC90D229458EBA00C50462 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		64FC90D529468BF800C50462 /* Action1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Action1.jpeg; sourceTree = "<group>"; };
+		64FC90D629468BF800C50462 /* Drama5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Drama5.jpeg; sourceTree = "<group>"; };
+		64FC90D729468BF800C50462 /* Drama1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Drama1.jpeg; sourceTree = "<group>"; };
+		64FC90D829468BF800C50462 /* Drama2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Drama2.jpeg; sourceTree = "<group>"; };
+		64FC90D929468BF800C50462 /* Drama4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Drama4.jpeg; sourceTree = "<group>"; };
+		64FC90DA29468BF800C50462 /* Action4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Action4.jpeg; sourceTree = "<group>"; };
+		64FC90DB29468BF800C50462 /* Anime3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Anime3.jpeg; sourceTree = "<group>"; };
+		64FC90DC29468BF800C50462 /* Anime1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Anime1.jpeg; sourceTree = "<group>"; };
+		64FC90DD29468BF800C50462 /* Action2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Action2.jpeg; sourceTree = "<group>"; };
+		64FC90DE29468BF800C50462 /* Anime4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Anime4.jpg; sourceTree = "<group>"; };
+		64FC90DF29468BF800C50462 /* Drama3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Drama3.jpeg; sourceTree = "<group>"; };
+		64FC90E029468BF800C50462 /* Actoin3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Actoin3.jpeg; sourceTree = "<group>"; };
+		64FC90E129468BF800C50462 /* Anime5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Anime5.jpg; sourceTree = "<group>"; };
+		64FC90E229468BF800C50462 /* Anime2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Anime2.jpeg; sourceTree = "<group>"; };
+		64FC90E329468BF800C50462 /* Action5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Action5.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,10 +154,33 @@
 		64FC90C12945218A00C50462 /* TopShelfDisplay */ = {
 			isa = PBXGroup;
 			children = (
+				64FC90D429468B9C00C50462 /* Images */,
 				64FC90C22945218A00C50462 /* ContentProvider.swift */,
 				64FC90C42945218A00C50462 /* Info.plist */,
 			);
 			path = TopShelfDisplay;
+			sourceTree = "<group>";
+		};
+		64FC90D429468B9C00C50462 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				64FC90D529468BF800C50462 /* Action1.jpeg */,
+				64FC90DD29468BF800C50462 /* Action2.jpeg */,
+				64FC90DA29468BF800C50462 /* Action4.jpeg */,
+				64FC90E329468BF800C50462 /* Action5.jpeg */,
+				64FC90E029468BF800C50462 /* Actoin3.jpeg */,
+				64FC90DC29468BF800C50462 /* Anime1.jpeg */,
+				64FC90E229468BF800C50462 /* Anime2.jpeg */,
+				64FC90DB29468BF800C50462 /* Anime3.jpeg */,
+				64FC90DE29468BF800C50462 /* Anime4.jpg */,
+				64FC90E129468BF800C50462 /* Anime5.jpg */,
+				64FC90D729468BF800C50462 /* Drama1.jpeg */,
+				64FC90D829468BF800C50462 /* Drama2.jpeg */,
+				64FC90DF29468BF800C50462 /* Drama3.jpeg */,
+				64FC90D929468BF800C50462 /* Drama4.jpeg */,
+				64FC90D629468BF800C50462 /* Drama5.jpeg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +274,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64FC90EA29468BF800C50462 /* Anime3.jpeg in Resources */,
+				64FC90E429468BF800C50462 /* Action1.jpeg in Resources */,
+				64FC90EB29468BF800C50462 /* Anime1.jpeg in Resources */,
+				64FC90E529468BF800C50462 /* Drama5.jpeg in Resources */,
+				64FC90EE29468BF800C50462 /* Drama3.jpeg in Resources */,
+				64FC90E929468BF800C50462 /* Action4.jpeg in Resources */,
+				64FC90ED29468BF800C50462 /* Anime4.jpg in Resources */,
+				64FC90E729468BF800C50462 /* Drama2.jpeg in Resources */,
+				64FC90F029468BF800C50462 /* Anime5.jpg in Resources */,
+				64FC90E829468BF800C50462 /* Drama4.jpeg in Resources */,
+				64FC90EF29468BF800C50462 /* Actoin3.jpeg in Resources */,
+				64FC90F229468BF800C50462 /* Action5.jpeg in Resources */,
+				64FC90E629468BF800C50462 /* Drama1.jpeg in Resources */,
+				64FC90EC29468BF800C50462 /* Action2.jpeg in Resources */,
+				64FC90F129468BF800C50462 /* Anime2.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
