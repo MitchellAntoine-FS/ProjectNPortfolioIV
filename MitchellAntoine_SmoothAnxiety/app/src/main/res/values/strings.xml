@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MitchellAntoine_SmoothAnxiety</string>
     <string name="message">Watch face tapped</string>
-    <string name="my_watchface_name">Smooth Anxiety</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="my_digital_name">Smooth Anxiety</string>
 </resources>

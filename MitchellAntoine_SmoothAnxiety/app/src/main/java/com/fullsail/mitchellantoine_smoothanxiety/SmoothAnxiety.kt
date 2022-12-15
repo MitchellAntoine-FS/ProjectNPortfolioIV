@@ -4,42 +4,30 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import androidx.core.content.ContextCompat
 import android.support.wearable.watchface.CanvasWatchFaceService
 import android.support.wearable.watchface.WatchFaceService
 import android.support.wearable.watchface.WatchFaceStyle
 import android.view.SurfaceHolder
+import android.view.WindowInsets
 import android.widget.Toast
+
 import java.lang.ref.WeakReference
-import java.util.*
+import java.util.Calendar
+import java.util.TimeZone
 
 /**
- * Updates rate in milliseconds for interactive mode. We update once a second to advance the
- * second hand.
- */
-private const val INTERACTIVE_UPDATE_RATE_MS = 1000
-
-/**
- * Handler message id for updating the time periodically in interactive mode.
- */
-private const val MSG_UPDATE_TIME = 0
-
-private const val HOUR_STROKE_WIDTH = 5f
-private const val MINUTE_STROKE_WIDTH = 3f
-private const val SECOND_TICK_STROKE_WIDTH = 2f
-
-private const val CENTER_GAP_AND_CIRCLE_RADIUS = 4f
-
-private const val SHADOW_RADIUS = 6f
-
-/**
- * Analog watch face with a ticking second hand. In ambient mode, the second hand isn"t
- * shown. On devices with low-bit ambient mode, the hands are drawn without anti-aliasing in ambient
- * mode. The watch face is drawn with less contrast in mute mode.
+ * Digital watch face with seconds. In ambient mode, the seconds aren"t displayed. On devices with
+ * low-bit ambient mode, the text is drawn without anti-aliasing in ambient mode.
  *
  *
  * Important Note: Because watch face apps do not have a default Activity in
@@ -50,6 +38,21 @@ private const val SHADOW_RADIUS = 6f
  * https://codelabs.developers.google.com/codelabs/watchface/index.html#0
  */
 class SmoothAnxiety : CanvasWatchFaceService() {
+
+    companion object {
+        private val NORMAL_TYPEFACE = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
+
+        /**
+         * Updates rate in milliseconds for interactive mode. We update once a second since seconds
+         * are displayed in interactive mode.
+         */
+        private const val INTERACTIVE_UPDATE_RATE_MS = 1000
+
+        /**
+         * Handler message id for updating the time periodically in interactive mode.
+         */
+        private const val MSG_UPDATE_TIME = 0
+    }
 
     override fun onCreateEngine(): Engine {
         return Engine()
@@ -73,37 +76,24 @@ class SmoothAnxiety : CanvasWatchFaceService() {
         private lateinit var mCalendar: Calendar
 
         private var mRegisteredTimeZoneReceiver = false
-        private var mMuteMode: Boolean = false
-        private var mCenterX: Float = 0F
-        private var mCenterY: Float = 0F
 
-        private var mSecondHandLength: Float = 0F
-        private var sMinuteHandLength: Float = 0F
-        private var sHourHandLength: Float = 0F
-
-        /* Colors for all hands (hour, minute, seconds, ticks) based on photo loaded. */
-        private var mWatchHandColor: Int = 0
-        private var mWatchHandHighlightColor: Int = 0
-        private var mWatchHandShadowColor: Int = 0
-
-        private lateinit var mHourPaint: Paint
-        private lateinit var mMinutePaint: Paint
-        private lateinit var mSecondPaint: Paint
-        private lateinit var mCenterPaint: Paint
-        private lateinit var mTickAndCirclePaint: Paint
+        private var mXOffset: Float = 0F
+        private var mYOffset: Float = 0F
 
         private lateinit var mBackgroundPaint: Paint
-        private lateinit var mBackgroundBitmap: Bitmap
-        private lateinit var mGrayBackgroundBitmap: Bitmap
+        private lateinit var mTextPaint: Paint
 
-        private var mAmbient: Boolean = false
+        /**
+         * Whether the display supports fewer bits for each color in ambient mode. When true, we
+         * disable anti-aliasing in ambient mode.
+         */
         private var mLowBitAmbient: Boolean = false
         private var mBurnInProtection: Boolean = false
+        private var mAmbient: Boolean = false
 
-        /* Handler to update the time once a second in interactive mode. */
-        private val mUpdateTimeHandler = EngineHandler(this)
+        private val mUpdateTimeHandler: Handler = EngineHandler(this)
 
-        private val mTimeZoneReceiver = object : BroadcastReceiver() {
+        private val mTimeZoneReceiver: BroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
                 mCalendar.timeZone = TimeZone.getDefault()
                 invalidate()
@@ -113,20 +103,28 @@ class SmoothAnxiety : CanvasWatchFaceService() {
         override fun onCreate(holder: SurfaceHolder) {
             super.onCreate(holder)
 
-            setWatchFaceStyle(WatchFaceStyle.Builder(this@SmoothAnxiety)
+            setWatchFaceStyle(
+                WatchFaceStyle.Builder(this@SmoothAnxiety)
                     .setAcceptsTapEvents(true)
-                    .build())
+                    .build()
+            )
 
             mCalendar = Calendar.getInstance()
 
-            mBackgroundPaint.color = Color.BLACK
+            val resources = this@SmoothAnxiety.resources
+            mYOffset = resources.getDimension(R.dimen.digital_y_offset)
 
-            mCenterPaint.style = Paint.Style.FILL_AND_STROKE
-            mCenterPaint.textAlign = Paint.Align.CENTER
-            mCenterPaint.strokeWidth = 1f
-            mCenterPaint.color = Color.WHITE
-            mCenterPaint.isAntiAlias = true
+            // Initializes background.
+            mBackgroundPaint = Paint().apply {
+                color = ContextCompat.getColor(applicationContext, R.color.background)
+            }
 
+            // Initializes Watch Face.
+            mTextPaint = Paint().apply {
+                typeface = NORMAL_TYPEFACE
+                isAntiAlias = true
+                color = ContextCompat.getColor(applicationContext, R.color.digital_text)
+            }
         }
 
         override fun onDestroy() {
@@ -137,9 +135,11 @@ class SmoothAnxiety : CanvasWatchFaceService() {
         override fun onPropertiesChanged(properties: Bundle) {
             super.onPropertiesChanged(properties)
             mLowBitAmbient = properties.getBoolean(
-                    WatchFaceService.PROPERTY_LOW_BIT_AMBIENT, false)
+                WatchFaceService.PROPERTY_LOW_BIT_AMBIENT, false
+            )
             mBurnInProtection = properties.getBoolean(
-                    WatchFaceService.PROPERTY_BURN_IN_PROTECTION, false)
+                WatchFaceService.PROPERTY_BURN_IN_PROTECTION, false
+            )
         }
 
         override fun onTimeTick() {
@@ -151,99 +151,18 @@ class SmoothAnxiety : CanvasWatchFaceService() {
             super.onAmbientModeChanged(inAmbientMode)
             mAmbient = inAmbientMode
 
-            // Check and trigger whether or not timer should be running (only
-            // in active mode).
+            if (mLowBitAmbient) {
+                mTextPaint.isAntiAlias = !inAmbientMode
+            }
+
+            // Whether the timer should be running depends on whether we"re visible (as well as
+            // whether we"re in ambient mode), so we may need to start or stop the timer.
             updateTimer()
         }
 
-//        private fun updateWatchHandStyle() {
-//            if (mAmbient) {
-//                mHourPaint.color = Color.WHITE
-//                mMinutePaint.color = Color.WHITE
-//                mSecondPaint.color = Color.WHITE
-//                mTickAndCirclePaint.color = Color.WHITE
-//
-//                mHourPaint.isAntiAlias = false
-//                mMinutePaint.isAntiAlias = false
-//                mSecondPaint.isAntiAlias = false
-//                mTickAndCirclePaint.isAntiAlias = false
-//
-//                mHourPaint.clearShadowLayer()
-//                mMinutePaint.clearShadowLayer()
-//                mSecondPaint.clearShadowLayer()
-//                mTickAndCirclePaint.clearShadowLayer()
-//
-//            } else {
-//                mHourPaint.color = mWatchHandColor
-//                mMinutePaint.color = mWatchHandColor
-//                mSecondPaint.color = mWatchHandHighlightColor
-//                mTickAndCirclePaint.color = mWatchHandColor
-//
-//                mHourPaint.isAntiAlias = true
-//                mMinutePaint.isAntiAlias = true
-//                mSecondPaint.isAntiAlias = true
-//                mTickAndCirclePaint.isAntiAlias = true
-//
-//                mHourPaint.setShadowLayer(
-//                        SHADOW_RADIUS, 0f, 0f, mWatchHandShadowColor)
-//                mMinutePaint.setShadowLayer(
-//                        SHADOW_RADIUS, 0f, 0f, mWatchHandShadowColor)
-//                mSecondPaint.setShadowLayer(
-//                        SHADOW_RADIUS, 0f, 0f, mWatchHandShadowColor)
-//                mTickAndCirclePaint.setShadowLayer(
-//                        SHADOW_RADIUS, 0f, 0f, mWatchHandShadowColor)
-//            }
-//        }
-
-        override fun onInterruptionFilterChanged(interruptionFilter: Int) {
-            super.onInterruptionFilterChanged(interruptionFilter)
-            val inMuteMode = interruptionFilter == WatchFaceService.INTERRUPTION_FILTER_NONE
-
-            /* Dim display in mute mode. */
-            if (mMuteMode != inMuteMode) {
-                mMuteMode = inMuteMode
-                mHourPaint.alpha = if (inMuteMode) 100 else 255
-                mMinutePaint.alpha = if (inMuteMode) 100 else 255
-                mSecondPaint.alpha = if (inMuteMode) 80 else 255
-                invalidate()
-            }
-        }
-
-        override fun onSurfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-            super.onSurfaceChanged(holder, format, width, height)
-
-            /*
-             * Find the coordinates of the center point on the screen, and ignore the window
-             * insets, so that, on round watches with a "chin", the watch face is centered on the
-             * entire screen, not just the usable portion.
-             */
-            mCenterX = width / 2f
-            mCenterY = height / 2f
-
-            mCenterPaint.textSize = width / 8f
-
-            if (!mBurnInProtection && !mLowBitAmbient) {
-                initGrayBackgroundBitmap()
-            }
-        }
-
-        private fun initGrayBackgroundBitmap() {
-            mGrayBackgroundBitmap = Bitmap.createBitmap(
-                    mBackgroundBitmap.width,
-                    mBackgroundBitmap.height,
-                    Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(mGrayBackgroundBitmap)
-            val grayPaint = Paint()
-            val colorMatrix = ColorMatrix()
-            colorMatrix.setSaturation(0f)
-            val filter = ColorMatrixColorFilter(colorMatrix)
-            grayPaint.colorFilter = filter
-            canvas.drawBitmap(mBackgroundBitmap, 0f, 0f, grayPaint)
-        }
-
-/**
-         * Captures tap event (and tap type). The [WatchFaceService.TAP_TYPE_TAP] case can be
-         * used for implementing specific logic to handle the gesture.
+        /**
+         * Captures tap event (and tap type) and toggles the background color if the user finishes
+         * a tap.
          */
         override fun onTapCommand(tapType: Int, x: Int, y: Int, eventTime: Long) {
             when (tapType) {
@@ -257,121 +176,53 @@ class SmoothAnxiety : CanvasWatchFaceService() {
                     // The user has completed the tap gesture.
                     // TODO: Add code to handle the tap gesture.
                     Toast.makeText(applicationContext, R.string.message, Toast.LENGTH_SHORT)
-                            .show()
+                        .show()
             }
             invalidate()
         }
 
         override fun onDraw(canvas: Canvas, bounds: Rect) {
+            // Draw the background.
+            if (mAmbient) {
+                canvas.drawColor(Color.BLACK)
+            } else {
+                canvas.drawRect(
+                    0f, 0f, bounds.width().toFloat(), bounds.height().toFloat(), mBackgroundPaint
+                )
+            }
+
+            // Draw H:MM in ambient mode or H:MM:SS in interactive mode.
             val now = System.currentTimeMillis()
             mCalendar.timeInMillis = now
 
-            drawBackground(canvas)
-
-            canvas.drawText((mCalendar.get(Calendar.HOUR_OF_DAY).toString() + ":" + mCalendar.get(Calendar.MINUTE)), mCenterX, mCenterY, mCenterPaint);
+            val text = if (mAmbient)
+                String.format(
+                    "%d:%02d", mCalendar.get(Calendar.HOUR),
+                    mCalendar.get(Calendar.MINUTE)
+                )
+            else
+                String.format(
+                    "%d:%02d:%02d", mCalendar.get(Calendar.HOUR),
+                    mCalendar.get(Calendar.MINUTE), mCalendar.get(Calendar.SECOND)
+                )
+            canvas.drawText(text, mXOffset, mYOffset, mTextPaint)
         }
-
-        private fun drawBackground(canvas: Canvas) {
-
-            if (mAmbient && (mLowBitAmbient || mBurnInProtection)) {
-                canvas.drawColor(Color.BLACK)
-            } else if (mAmbient) {
-                canvas.drawBitmap(mGrayBackgroundBitmap, 0f, 0f, mBackgroundPaint)
-            } else {
-                canvas.drawBitmap(mBackgroundBitmap, 0f, 0f, mBackgroundPaint)
-            }
-        }
-
-//        private fun drawWatchFace(canvas: Canvas) {
-//
-//            /*
-//             * Draw ticks. Usually you will want to bake this directly into the photo, but in
-//             * cases where you want to allow users to select their own photos, this dynamically
-//             * creates them on top of the photo.
-//             */
-//            val innerTickRadius = mCenterX - 10
-//            val outerTickRadius = mCenterX
-//            for (tickIndex in 0..11) {
-//                val tickRot = (tickIndex.toDouble() * Math.PI * 2.0 / 12).toFloat()
-//                val innerX = Math.sin(tickRot.toDouble()).toFloat() * innerTickRadius
-//                val innerY = (-Math.cos(tickRot.toDouble())).toFloat() * innerTickRadius
-//                val outerX = Math.sin(tickRot.toDouble()).toFloat() * outerTickRadius
-//                val outerY = (-Math.cos(tickRot.toDouble())).toFloat() * outerTickRadius
-//                canvas.drawLine(mCenterX + innerX, mCenterY + innerY,
-//                        mCenterX + outerX, mCenterY + outerY, mTickAndCirclePaint)
-//            }
-//
-//            /*
-//             * These calculations reflect the rotation in degrees per unit of time, e.g.,
-//             * 360 / 60 = 6 and 360 / 12 = 30.
-//             */
-//            val seconds =
-//                    mCalendar.get(Calendar.SECOND) + mCalendar.get(Calendar.MILLISECOND) / 1000f
-//            val secondsRotation = seconds * 6f
-//
-//            val minutesRotation = mCalendar.get(Calendar.MINUTE) * 6f
-//
-//            val hourHandOffset = mCalendar.get(Calendar.MINUTE) / 2f
-//            val hoursRotation = mCalendar.get(Calendar.HOUR) * 30 + hourHandOffset
-//
-//            /*
-//             * Save the canvas state before we can begin to rotate it.
-//             */
-//            canvas.save()
-//
-//            canvas.rotate(hoursRotation, mCenterX, mCenterY)
-//            canvas.drawLine(
-//                    mCenterX,
-//                    mCenterY - CENTER_GAP_AND_CIRCLE_RADIUS,
-//                    mCenterX,
-//                    mCenterY - sHourHandLength,
-//                    mHourPaint)
-//
-//            canvas.rotate(minutesRotation - hoursRotation, mCenterX, mCenterY)
-//            canvas.drawLine(
-//                    mCenterX,
-//                    mCenterY - CENTER_GAP_AND_CIRCLE_RADIUS,
-//                    mCenterX,
-//                    mCenterY - sMinuteHandLength,
-//                    mMinutePaint)
-//
-//            /*
-//             * Ensure the "seconds" hand is drawn only when we are in interactive mode.
-//             * Otherwise, we only update the watch face once a minute.
-//             */
-//            if (!mAmbient) {
-//                canvas.rotate(secondsRotation - minutesRotation, mCenterX, mCenterY)
-//                canvas.drawLine(
-//                        mCenterX,
-//                        mCenterY - CENTER_GAP_AND_CIRCLE_RADIUS,
-//                        mCenterX,
-//                        mCenterY - mSecondHandLength,
-//                        mSecondPaint)
-//
-//            }
-//            canvas.drawCircle(
-//                    mCenterX,
-//                    mCenterY,
-//                    CENTER_GAP_AND_CIRCLE_RADIUS,
-//                    mTickAndCirclePaint)
-//
-//            /* Restore the canvas" original orientation. */
-//            canvas.restore()
-//        }
 
         override fun onVisibilityChanged(visible: Boolean) {
             super.onVisibilityChanged(visible)
 
             if (visible) {
                 registerReceiver()
-                /* Update time zone in case it changed while we weren"t visible. */
+
+                // Update time zone in case it changed while we weren"t visible.
                 mCalendar.timeZone = TimeZone.getDefault()
                 invalidate()
             } else {
                 unregisterReceiver()
             }
 
-            /* Check and trigger whether or not timer should be running (only in active mode). */
+            // Whether the timer should be running depends on whether we"re visible (as well as
+            // whether we"re in ambient mode), so we may need to start or stop the timer.
             updateTimer()
         }
 
@@ -392,8 +243,32 @@ class SmoothAnxiety : CanvasWatchFaceService() {
             this@SmoothAnxiety.unregisterReceiver(mTimeZoneReceiver)
         }
 
+        override fun onApplyWindowInsets(insets: WindowInsets) {
+            super.onApplyWindowInsets(insets)
+
+            // Load resources that have alternate values for round watches.
+            val resources = this@SmoothAnxiety.resources
+            val isRound = insets.isRound
+            mXOffset = resources.getDimension(
+                if (isRound)
+                    R.dimen.digital_x_offset_round
+                else
+                    R.dimen.digital_x_offset
+            )
+
+            val textSize = resources.getDimension(
+                if (isRound)
+                    R.dimen.digital_text_size_round
+                else
+                    R.dimen.digital_text_size
+            )
+
+            mTextPaint.textSize = textSize
+        }
+
         /**
-         * Starts/stops the [.mUpdateTimeHandler] timer based on the state of the watch face.
+         * Starts the [.mUpdateTimeHandler] timer if it should be running and isn"t currently
+         * or stops it if it shouldn"t be running but currently is.
          */
         private fun updateTimer() {
             mUpdateTimeHandler.removeMessages(MSG_UPDATE_TIME)
@@ -403,11 +278,11 @@ class SmoothAnxiety : CanvasWatchFaceService() {
         }
 
         /**
-         * Returns whether the [.mUpdateTimeHandler] timer should be running. The timer
-         * should only run in active mode.
+         * Returns whether the [.mUpdateTimeHandler] timer should be running. The timer should
+         * only run when we"re visible and in interactive mode.
          */
         private fun shouldTimerBeRunning(): Boolean {
-            return isVisible && !mAmbient
+            return isVisible && !isInAmbientMode
         }
 
         /**
