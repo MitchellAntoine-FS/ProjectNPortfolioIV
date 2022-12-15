@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-nodpi/ic_broken_heart.xml" value="0.191" />
+        <entry key="app/src/main/res/drawable-nodpi/ic_heart.xml" value="0.191" />
         <entry key="app/src/main/res/layout/activity_heart_rate.xml" value="0.44037656903765693" />
         <entry key="app/src/main/res/layout/activity_heartrate.xml" value="0.553347280334728" />
       </map>

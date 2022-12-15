@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class SmoothAnxietyViewModel @Inject constructor(
     private val healthServicesManager: HealthServicesManager) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState>(UiState.Startup)
@@ -51,6 +51,7 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
 }
 
 sealed class UiState {
