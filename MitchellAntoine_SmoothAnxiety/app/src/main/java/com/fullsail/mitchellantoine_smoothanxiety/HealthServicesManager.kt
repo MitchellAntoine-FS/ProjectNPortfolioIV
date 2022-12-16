@@ -1,6 +1,7 @@
 package com.fullsail.mitchellantoine_smoothanxiety
 
 import android.util.Log
+import androidx.concurrent.futures.await
 import androidx.health.services.client.HealthServicesClient
 import androidx.health.services.client.MeasureCallback
 import androidx.health.services.client.data.*
@@ -11,9 +12,15 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+
 class HealthServicesManager @Inject constructor(healthServicesClient: HealthServicesClient) {
     private val TAG = "HealthServicesManager"
     private val measureClient = healthServicesClient.measureClient
+
+    suspend fun hasHeartRateCapability(): Boolean {
+        val capabilities = measureClient.getCapabilitiesAsync().await()
+        return (DataType.HEART_RATE_BPM in capabilities.supportedDataTypesMeasure)
+    }
 
     @ExperimentalCoroutinesApi
     fun heartRateMeasureFlow() = callbackFlow {

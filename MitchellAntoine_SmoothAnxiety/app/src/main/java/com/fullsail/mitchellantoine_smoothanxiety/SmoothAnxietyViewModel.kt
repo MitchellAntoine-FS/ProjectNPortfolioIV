@@ -26,7 +26,7 @@ class SmoothAnxietyViewModel @Inject constructor(
     init {
         // Check that the device has the heart rate capability and progress to the next state
         viewModelScope.launch {
-            _uiState.value = if (healthServicesManager.heartRateMeasureFlow()) {
+            _uiState.value = if (healthServicesManager.hasHeartRateCapability()) {
                 UiState.HeartRateAvailable
             } else {
                 UiState.HeartRateNotAvailable
@@ -47,7 +47,6 @@ class SmoothAnxietyViewModel @Inject constructor(
                     Log.d(TAG, "Data update: $bpm")
                     _heartRateBpm.value = bpm
                 }
-                else -> {}
             }
         }
     }
