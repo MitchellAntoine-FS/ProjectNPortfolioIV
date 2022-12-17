@@ -1,9 +1,6 @@
 package com.fullsail.mitchellantoine_smoothanxiety
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
@@ -109,6 +106,16 @@ class SmoothAnxiety : CanvasWatchFaceService() {
             }
         }
 
+
+        override fun setDefaultComplicationProvider(
+            watchFaceComplicationId: Int,
+            provider: ComponentName?,
+            type: Int
+        ) {
+            super.setDefaultComplicationProvider(watchFaceComplicationId, provider, type)
+
+        }
+
         override fun onDestroy() {
             mUpdateTimeHandler.removeMessages(MSG_UPDATE_TIME)
             super.onDestroy()
@@ -184,8 +191,8 @@ class SmoothAnxiety : CanvasWatchFaceService() {
                 )
             else
                 String.format(
-                    "%d:%02d:%02d", mCalendar.get(Calendar.HOUR),
-                    mCalendar.get(Calendar.MINUTE), mCalendar.get(Calendar.SECOND)
+                    "%d:%02d", mCalendar.get(Calendar.HOUR),
+                    mCalendar.get(Calendar.MINUTE)
                 )
             canvas.drawText(text, mXOffset, mYOffset, mTextPaint)
         }

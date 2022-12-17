@@ -2,4 +2,11 @@
     <string name="app_name">MitchellAntoine_SmoothAnxiety</string>
     <string name="message">Watch face tapped</string>
     <string name="my_digital_name">Smooth Anxiety</string>
+    <string name="stress_level">Stress Level</string>
+    <string name="text_00_00">00:00</string>
+    <string name="_null">null</string>
+    <string name="image">image</string>
+    <string name="digi_clock">digi clock</string>
+    <string name="heartrate_text">Heartrate</string>
+    <string name="heart_rate_not_available">Heart rate not available on this device</string>
 </resources>
