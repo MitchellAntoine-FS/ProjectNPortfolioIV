@@ -30,8 +30,7 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (::permissionLauncher.isInitialized) {
-            permissionLauncher
+            permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
                 when (result) {
                     true -> {
@@ -45,7 +44,6 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
                 }
 
             }
-        }
 
     // Bind viewmodel state to the UI.
         lifecycleScope.launchWhenStarted {
