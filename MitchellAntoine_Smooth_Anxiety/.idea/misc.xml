@@ -6,8 +6,10 @@
         <entry key="app/src/main/res/drawable-nodpi/ic_baseline_monitor_heart_24.xml" value="0.225" />
         <entry key="app/src/main/res/drawable-nodpi/ic_broken_heart.xml" value="0.225" />
         <entry key="app/src/main/res/drawable-nodpi/ic_heart.xml" value="0.225" />
+        <entry key="app/src/main/res/drawable/custom_progress_bar.xml" value="0.218" />
         <entry key="app/src/main/res/drawable/ic_baseline_monitor_heart_24.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.7608798039009381" />
+        <entry key="app/src/main/res/layout/activity_stress_level.xml" value="0.5587742001991571" />
       </map>
     </option>
   </component>

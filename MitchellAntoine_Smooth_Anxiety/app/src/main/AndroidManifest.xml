@@ -4,9 +4,7 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-feature android:name="android.hardware.type.watch" />
-
-    <!-- For receiving heart rate data. -->
+    <uses-feature android:name="android.hardware.type.watch" /> <!-- For receiving heart rate data. -->
     <uses-permission android:name="android.permission.BODY_SENSORS" />
 
     <queries>
@@ -20,10 +18,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name=".StressLevelActivity"
+            android:exported="false" />
+
         <uses-library
             android:name="com.google.android.wearable"
             android:required="true" />
-
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.

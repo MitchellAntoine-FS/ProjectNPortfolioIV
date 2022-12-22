@@ -2,6 +2,8 @@ package com.fullsail.mitchellantoine_smooth_anxiety
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -21,6 +23,7 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
 
     private val viewModel: SmoothAnxietyViewModel by viewModels()
+    private lateinit var heartBtn: ImageButton
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,12 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-            permissionLauncher =
+        heartBtn = findViewById(R.id.image_btn)
+        heartBtn.setOnClickListener {
+            Toast.makeText(this, "Button Clicked", Toast.LENGTH_LONG).show()
+        }
+
+        permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
                 when (result) {
                     true -> {
@@ -45,7 +53,7 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
 
             }
 
-    // Bind viewmodel state to the UI.
+        // Bind viewmodel state to the UI.
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect {
                 updateViewVisibility(it)
