@@ -10,4 +10,7 @@
     <string name="heartrate_text">Heartrate</string>
     <string name="heart_rate_not_available">Heart rate not available on this device</string>
     <string name="heart_rate">0.0</string>
+    <string name="status">Status:</string>
+    <string name="measure_status">Status: %1$s</string>
+    <string name="status_label_string">Available</string>
 </resources>

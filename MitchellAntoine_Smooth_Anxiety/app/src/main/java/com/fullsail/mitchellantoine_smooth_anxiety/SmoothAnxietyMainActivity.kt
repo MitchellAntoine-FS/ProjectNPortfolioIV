@@ -1,5 +1,6 @@
 package com.fullsail.mitchellantoine_smooth_anxiety
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -23,6 +24,7 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
 
     private val viewModel: SmoothAnxietyViewModel by viewModels()
+
     private lateinit var heartBtn: ImageButton
 
     @ExperimentalCoroutinesApi
@@ -36,6 +38,9 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
         heartBtn = findViewById(R.id.image_btn)
         heartBtn.setOnClickListener {
             Toast.makeText(this, "Button Clicked", Toast.LENGTH_LONG).show()
+
+            val intent = Intent(this, StressLevelActivity::class.java)
+            startActivity(intent)
         }
 
         permissionLauncher =
