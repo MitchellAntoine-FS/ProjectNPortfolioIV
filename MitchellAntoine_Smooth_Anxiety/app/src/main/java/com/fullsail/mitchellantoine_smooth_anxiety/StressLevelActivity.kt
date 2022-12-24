@@ -2,23 +2,27 @@ package com.fullsail.mitchellantoine_smooth_anxiety
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.activity.viewModels
+import android.util.Log
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.fullsail.mitchellantoine_smooth_anxiety.databinding.ActivityStressLevelBinding
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.android.material.progressindicator.CircularProgressIndicator.INDICATOR_DIRECTION_COUNTERCLOCKWISE
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 class StressLevelActivity : AppCompatActivity() {
-
+    private val TAG = "StressLevelActivity"
+    
     private lateinit var binding: ActivityStressLevelBinding
 
-    private val viewModel: SmoothAnxietyViewModel by viewModels()
+    private val TOTAL_TIME = 5 * 1000L
 
-    private val TOTAL_TIME = 60 * 1000L
+    private lateinit var startBtn: ImageButton
 
     private lateinit var circleProgress: CircularProgressIndicator
+
+    private var currentProgress = 0
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,30 +31,42 @@ class StressLevelActivity : AppCompatActivity() {
         binding = ActivityStressLevelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Bind viewmodel state to the UI.
+        circleProgress = binding.circularProgressIndicator
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.heartRateAvailable.collect {
-                binding.statusLabel.text = getString(R.string.measure_status, it)
-            }
-        }
-        lifecycleScope.launchWhenStarted {
-            viewModel.heartRateBpm.collect {
-                binding.heartrateLabel.text = String.format("%.1f", it)
-            }
+        startBtn = binding.imageButton
+        startBtn.setOnClickListener {
+            setProgress.start()
+            setProgress.onTick((currentProgress + 20).toLong())
         }
 
-        timeOutRemoveTimer.start()
     }
 
-    private var timeOutRemoveTimer = object : CountDownTimer(TOTAL_TIME, 10) {
-        override fun onFinish() {
-            circleProgress.progress = 1
-        }
+    private var setProgress = object : CountDownTimer(5*1000, 1000) {
 
         override fun onTick(millisUntilFinished: Long) {
-            circleProgress.progress = ((TOTAL_TIME - millisUntilFinished).toFloat() / TOTAL_TIME).toInt()
+
+            if (circleProgress.progress != 100) {
+                
+                currentProgress = currentProgress + 20
+                circleProgress.setProgress(currentProgress)
+                circleProgress.setMax(100)
+            }
+            else if (circleProgress.progress >= 0) {
+
+                currentProgress = currentProgress - 20
+                circleProgress.indicatorDirection = INDICATOR_DIRECTION_COUNTERCLOCKWISE
+                circleProgress.setProgress(currentProgress)
+            }
+
+            Log.i("PROGRESS", "Progress... " + circleProgress.progress + "%")
         }
+        override fun onFinish() {
+            Log.i(TAG, "onFinish: Progress Finished" )
+
+//            circleProgress.progress = 0
+
+        }
+
     }
 
 }
