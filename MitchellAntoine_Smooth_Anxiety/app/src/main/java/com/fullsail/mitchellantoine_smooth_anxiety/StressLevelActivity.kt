@@ -46,7 +46,7 @@ class StressLevelActivity : AppCompatActivity() {
         override fun onTick(millisUntilFinished: Long) {
 
             if (circleProgress.progress != 100) {
-                
+
                 currentProgress = currentProgress + 20
                 circleProgress.setProgress(currentProgress)
                 circleProgress.setMax(100)

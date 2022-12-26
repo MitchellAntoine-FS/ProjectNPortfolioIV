@@ -39,7 +39,7 @@ class SmoothAnxietyMainActivity : AppCompatActivity() {
         heartBtn.setOnClickListener {
             Toast.makeText(this, "Button Clicked", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this, StressLevelActivity::class.java)
+            val intent = Intent(this, BreathingActivity::class.java)
             startActivity(intent)
         }
 

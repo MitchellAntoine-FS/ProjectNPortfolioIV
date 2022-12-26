@@ -16,4 +16,6 @@
     <string name="start_breathing_btn">Start</string>
     <string name="breathing_exersice">Breathing Exersice</string>
     <string name="image_btn">image</string>
+    <string name="great">Great</string>
+    <string name="inhale_exhale">Inhale........ Exhale</string>
 </resources>

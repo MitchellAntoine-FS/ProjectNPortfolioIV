@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".BreathingActivity"
+            android:exported="false" />
+        <activity
             android:name=".StressLevelActivity"
             android:exported="false" />
 
